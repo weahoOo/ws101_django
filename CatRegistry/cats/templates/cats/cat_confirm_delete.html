@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Cat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ffe4e1, #ffcccb);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .delete-box {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        .delete-box h2 {
+            color: #444;
+            margin-bottom: 20px;
+        }
+        .delete-box p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+        .delete-box .cat-name {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+        }
+        .button-group a,
+        .button-group button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .button-group a {
+            background-color: #ccc;
+            color: #333;
+        }
+        .button-group button {
+            background-color: #ff6b6b;
+            color: white;
+        }
+        .button-group a:hover {
+            background-color: #bbb;
+        }
+        .button-group button:hover {
+            background-color: #ff4a4a;
+        }
+    </style>
+</head>
+<body>
+    <div class="delete-box">
+        <h2>Delete Cat</h2>
+        <p>Are you sure you want to delete <span class="cat-name">{{ cat.name }}</span>?</p>
+        <div class="button-group">
+            <a href="{% url 'cat_list' %}">Cancel</a>
+            <form method="POST" style="margin: 0;">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

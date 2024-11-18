@@ -1,0 +1,44 @@
+{% extends 'cats/base.html' %}
+{% block content %}
+<h1>Welcome to the Cat Registry 🐾</h1>
+<div style="background-color: #ffe4e1; padding: 20px; border-radius: 10px; text-align: center;">
+    <p>Here you can add your adorable cats, edit their details, or remove them if needed!</p>
+</div>
+
+<!-- Display Cats in Boxes -->
+<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 20px;">
+    {% for cat in cats %}
+    <div style="
+        width: 250px; 
+        background: url('https://i.imgur.com/XG2gkz3.png') linear-gradient(135deg, #ffe4e1, #ffcccb); 
+        border: 2px solid #ffcccb; 
+        border-radius: 15px; 
+        padding: 15px; 
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+        text-align: center; 
+        position: relative;
+        font-family: 'Arial', sans-serif;
+    ">
+        <div style="font-size: 40px; margin-bottom: 10px;">😺</div>
+        <h3 style="color: #444;">{{ cat.name }}</h3>
+        <p style="color: #666; margin: 5px 0;"><strong>Breed:</strong> {{ cat.breed }}</p>
+        <p style="color: #666; margin: 5px 0;"><strong>Age:</strong> {{ cat.age }}</p>
+        <p style="color: #666; margin: 5px 0;"><strong>Sexuality:</strong> {{ cat.get_sexuality_display }}</p>
+        <p style="color: #666; margin: 5px 0;"><strong>Color:</strong> {{ cat.get_color_display }}</p>
+        <div style="margin-top: 10px;">
+            <a href="{% url 'cat_edit' cat.id %}" 
+               style="text-decoration: none; background-color: #ffcccb; padding: 5px 10px; border-radius: 5px; color: #333; font-weight: bold;">✏️ Edit</a>
+            <a href="{% url 'cat_delete' cat.id %}" 
+               style="text-decoration: none; background-color: #ffa1a1; padding: 5px 10px; border-radius: 5px; color: #333; font-weight: bold;">🗑️ Delete</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% if not cats %}
+<div style="text-align: center; margin-top: 50px;">
+    <p style="color: #666; font-size: 18px;">No cats available yet. Add your first cat! 🐱</p>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'cats/base.html' %}
+{% block content %}
+<h1 style="text-align: center;">{% if form.instance.id %}Edit Cat Details 🐾{% else %}Add a New Cat 🐱{% endif %}</h1>
+
+<div style="background-color: #ffe4e1; padding: 20px; border-radius: 10px; width: 50%; margin: auto; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+    <form method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 15px;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div style="text-align: center;">
+            <button type="submit" style="background-color: #ffcccb; border: none; padding: 10px 20px; font-size: 16px; font-weight: bold; border-radius: 5px; cursor: pointer;">🐾 Save Cat</button>
+        </div>
+    </form>
+    <div style="text-align: center; margin-top: 10px;">
+        <a href="{% url 'cat_list' %}" style="text-decoration: none; color: #666; font-size: 16px;">⬅ Back to Home</a>
+    </div>
+</div>
+{% endblock %}
